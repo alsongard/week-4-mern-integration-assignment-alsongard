@@ -100,8 +100,10 @@ const PORT_NUMBER = 6000;
 
 const uri_string = process.env.CONNECT_STRING;
 // console.log(uri_string); testing
+const user = process.env.POST_USER;
+const secret = process.env.POST_SECRET;
 
-mongoose.connect("mongodb+srv://alsongadizo:IbewQtMvIiDH7xB1@cluster0.9mxopa5.mongodb.net/user?retryWrites=true&w=majority&appName=Cluster0")
+mongoose.connect(`mongodb+srv://${user}:${secret}@cluster0.9mxopa5.mongodb.net/user?retryWrites=true&w=majority&appName=Cluster0`)
     .then(()=>{
     console.log('Connected to Database');
     app.listen(PORT_NUMBER, ()=>{console.log(`Listening to port ${PORT_NUMBER}`)});
@@ -111,5 +113,3 @@ mongoose.connect("mongodb+srv://alsongadizo:IbewQtMvIiDH7xB1@cluster0.9mxopa5.mo
 
 
 
-
-//mongodb+srv://alsongadizo:IbewQtMvIiDH7xB1@cluster0.9mxopa5.mongodb.net/?retryWrites=true&w=majority&appName=Cluster0
