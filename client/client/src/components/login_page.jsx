@@ -2,10 +2,11 @@ import { useState } from "react";
 import { FaUser } from "react-icons/fa6";
 import { RiLockPasswordFill } from "react-icons/ri";
 import { useNavigate } from 'react-router-dom';
+import setAuthorizationHeader from "../utils/setAuthHeader";
 import axios from "axios";
+import { connect } from "react-redux"
 
-
-export default function Login()
+function Login(props)
 {
     const navigate = useNavigate();
     const [formData, setFormData] =  useState({
@@ -40,12 +41,15 @@ export default function Login()
                 if (success == true)
                 {
                     localStorage.setItem("token", data);
+                    setAuthorizationHeader(data);
                     const {email, user_id} = resData.data;
                 // console.log(email, user_id); testing working correctly
                     const myEmail = email.split("@")[0];
                     localStorage.setItem('username',myEmail);
                     localStorage.setItem('user_id',user_id);
+                    props.onLoggedIn()
                     navigate("/posts");
+
                 }
                 else
                 {
@@ -98,3 +102,11 @@ export default function Login()
         </section>
     )
 }
+
+const mapDispatchToProps = (dispatch)=>{
+    return {
+        onLoggedIn: ()=>dispatch({type:"ON_LOGGED_IN"})
+    }
+}
+
+export default connect(null, mapDispatchToProps)(Login);
