@@ -8,8 +8,8 @@ function HomePage()
     })
 
     return (
-        <section>
-            <h1 className="text-center text-[30px] my-[20px]">TechSpace</h1>
+        <section className="dark:bg-gradient-to-br bg-slate-50 dark:from-slate-700 dark:to-slate-900 mt-0s">
+            <h1 className="text-center text-[30px] dark:text-white  py-[20px]">TechSpace</h1>
             <div className="flex flex-col w-[1200px] py-[25px] gap-y-[20px] px-[50px] mx-auto ">
                 {content}
             </div>
