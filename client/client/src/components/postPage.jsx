@@ -35,7 +35,7 @@ export default function PostPage()
         const title = postData.title;
         let newString = title.replace(/\s/g, "-");
         newString = newString.toLowerCase();
-        console.log(newString);
+        // console.log(newString);
         setPostData((prevData)=>{
             return {
                 ...prevData,
@@ -44,13 +44,13 @@ export default function PostPage()
             }
         })
         setDisplaySlug(true);
-        console.log(postData)
+        // console.log(postData)
 
     }
     const [displayCreateForm, setDisplayCreateForm] = useState(false);
     function genCreateForm()
     {
-        setDisplayCreateForm((prevBool)=>{ console.log(prevBool); return !prevBool});
+        setDisplayCreateForm((prevBool)=>{ return !prevBool});
 
     }
     const [userPost, setUserPost] = useState({});
@@ -60,9 +60,9 @@ export default function PostPage()
         try
         {
             const res = await axios.get(`http://localhost:5001/getpost/${user_id}`);
-            console.log(res);
+            // console.log(res);
             const {data} =  res.data
-            console.log(data);
+            // console.log(data);
             setUserPost(data);
             setDisplayPost((prevBool)=>{return !prevBool});
         }
@@ -98,11 +98,10 @@ export default function PostPage()
         {
 
             const res = await axios.post("http://localhost:5001/createpost", postData);
-            console.log(res);
+            // console.log(res);
             const {data} = res.data;
-            console.log(`this is data : \n ${data}`);
+            // console.log(`this is data : \n ${data}`);
             setUserPost(data);
-            setDisplayPost(true);
         }
         catch(err)
         {
