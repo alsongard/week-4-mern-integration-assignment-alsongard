@@ -8,7 +8,12 @@ const reducerer = (state=initializeState,action)=>{
             return {
                 ...state,
                 isLoggedIn:true
-            }
+            };
+        case 'ON_LOG_OUT':
+            return {
+                ...state,
+                isLoggedIn: false
+            };
     }
     return state;
 }
