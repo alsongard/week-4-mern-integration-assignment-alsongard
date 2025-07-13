@@ -1,9 +1,10 @@
-import {Link, NavLink} from 'react-router-dom'
+import {Link, NavLink, useNavigate} from 'react-router-dom'
 import {connect} from 'react-redux';
 import { FaM, FaMoon } from 'react-icons/fa6';
 
 function Header(props)
 {
+    const navigate = useNavigate()
     const {darkMode, setDarkMode} = props;
     const handleBackGround = ()=>{
         console.log("backGround changer clicked!!")
@@ -11,6 +12,11 @@ function Header(props)
             console.log(`DarkMode: ${prevData}`)
             return !prevData;
         })
+    };
+    const logOut = ()=>{
+        localStorage.clear();
+        props.onLoggedOut();
+        navigate("/");
     }
     return (
         <header className='flex flex-row justify-between py-[10px]  bg-gradient-to-r from-slate-900 to-slate-600 text-white '>
@@ -71,6 +77,7 @@ function Header(props)
                             </NavLink>
                         </li>
                         <li>Profile</li>
+                        <li><button onClick={logOut} className="bg-[rgb(100,172,168)] py-[2.5px] px-[15px] rounded-md hover:bg-[rgb(84,219,91)] hover:scale-105">LogOut</button></li>
                         <li><FaMoon onClick={handleBackGround} /></li>
                     </ul>
                 )
@@ -79,7 +86,12 @@ function Header(props)
         </header>
     )
 }
+const mapDispatchToProps = (dispatch)=>{
+    return {
+        onLoggedOut: ()=>dispatch({type:"ON_LOG_OUT"})
+    }
+}
 const mapStateToProps = (state)=>{
     return {isLoggedIn: state.isLoggedIn}
 }
-export default connect(mapStateToProps)(Header);
+export default connect(mapStateToProps, mapDispatchToProps)(Header);
