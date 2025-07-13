@@ -10,6 +10,7 @@ import {Provider} from "react-redux";
 import requireAuth from './requireAuth.jsx';
 import { useState } from 'react'
 import HomePage from './components/homePage.jsx'
+import AdminPage from './components/adminPage.jsx'
 
 
 const ProtectedPostPage = requireAuth(PostPage);
@@ -35,6 +36,7 @@ function App() {
                 <Route path="signin" element={<SignIn/>}/>
                 <Route path="login" element={<Login/> }/>
                 <Route path="posts" element={<ProtectedPostPage/> }/>
+                <Route path="admin" element={<AdminPage/>}/>
               </Route>
             </Routes>
         </BrowserRouter>
