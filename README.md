@@ -1,79 +1,179 @@
-[![Open in Visual Studio Code](https://classroom.github.com/assets/open-in-vscode-2e0aaae1b6195c2367325f4f02e2d04e9abb55f0b24a779b69b11b9e10269abc.svg)](https://classroom.github.com/online_ide?assignment_repo_id=19891383&assignment_repo_type=AssignmentRepo)
-# MERN Stack Integration Assignment
+# Blog Website - MERN Stack Application
 
-This assignment focuses on building a full-stack MERN (MongoDB, Express.js, React.js, Node.js) application that demonstrates seamless integration between front-end and back-end components.
+A full-stack blog website built with the MERN stack, featuring user authentication, protected routes, and a modern responsive design.
 
-## Assignment Overview
+## 🚀 Technologies Used
 
-You will build a blog application with the following features:
-1. RESTful API with Express.js and MongoDB
-2. React front-end with component architecture
-3. Full CRUD functionality for blog posts
-4. User authentication and authorization
-5. Advanced features like image uploads and comments
+### Frontend
+- **Vite** - Fast build tool and development server
+- **React 19** - Modern UI library with hooks and components
+- **TailwindCSS** - Utility-first CSS framework for styling
+- **React Router DOM** - Client-side routing
+- **Redux Toolkit** - State management for authentication and protected routes
+- **Axios** - HTTP client for API requests to the backend
+- **React Icons** - Icon library
 
-## Project Structure
+### Backend
+- **Node.js** - JavaScript runtime
+- **Express.js** - Web application framework
+- **MongoDB** - NoSQL database
+- **Mongoose** - MongoDB object modeling
+- **JWT** - JSON Web Tokens for authentication
+- **CORS** - Cross-origin resource sharing
+
+## 📁 Project Structure
 
 ```
-mern-blog/
-├── client/                 # React front-end
-│   ├── public/             # Static files
-│   ├── src/                # React source code
-│   │   ├── components/     # Reusable components
-│   │   ├── pages/          # Page components
-│   │   ├── hooks/          # Custom React hooks
-│   │   ├── services/       # API services
-│   │   ├── context/        # React context providers
-│   │   └── App.jsx         # Main application component
-│   └── package.json        # Client dependencies
-├── server/                 # Express.js back-end
-│   ├── config/             # Configuration files
-│   ├── controllers/        # Route controllers
-│   ├── models/             # Mongoose models
-│   ├── routes/             # API routes
-│   ├── middleware/         # Custom middleware
-│   ├── utils/              # Utility functions
-│   ├── server.js           # Main server file
-│   └── package.json        # Server dependencies
-└── README.md               # Project documentation
+├── client/
+│   └── client/
+│       ├── src/
+│       │   ├── components/     # React components
+│       │   ├── store/         # Redux store and reducers
+│       │   ├── utils/         # Utility functions
+│       │   └── assets/        # Images and static assets
+│       ├── package.json
+│       └── vite.config.js
+└── server/
+    ├── models/                # MongoDB models
+    ├── myserver.js             # Express server configuration
+    └── package.json
 ```
 
-## Getting Started
+## 🔑 Key Features
 
-1. Accept the GitHub Classroom assignment invitation
-2. Clone your personal repository that was created by GitHub Classroom
-3. Follow the setup instructions in the `Week4-Assignment.md` file
-4. Complete the tasks outlined in the assignment
+- **User Authentication**: Secure registration and login system
+- **Protected Routes**: Redux-based route protection for authenticated users
+- **Blog Management**: Create, read, and manage blog posts
+- **Admin Dashboard**: Administrative interface
+- **Dark Mode**: Toggle between light and dark themes
+- **Full-Stack Integration**: Complete frontend-backend communication using Axios
 
-## Files Included
+## 🛠️ Installation & Setup
 
-- `Week4-Assignment.md`: Detailed assignment instructions
-- Starter code for both client and server:
-  - Basic project structure
-  - Configuration files
-  - Sample models and components
+### Prerequisites
+- Node.js (v14 or higher)
+- MongoDB (local or cloud instance)
+- npm or yarn package manager
 
-## Requirements
+### Backend Setup
+1. Navigate to the server directory:
+   ```bash
+   cd server
+   ```
 
-- Node.js (v18 or higher)
-- MongoDB (local installation or Atlas account)
-- npm or yarn
-- Git
+2. Install dependencies:
+   ```bash
+   npm install
+   ```
 
-## Submission
+3. Create a `.env` file in the server directory:
+   ```env
+   MONGODB_URI=your_mongodb_connection_string
+   JWT_SECRET=your_jwt_secret_key
+   PORT=5000
+   ```
 
-Your work will be automatically submitted when you push to your GitHub Classroom repository. Make sure to:
+4. Start the server:
+   ```bash
+   npm run dev    # Development mode with nodemon
+   npm start      # Production mode
+   ```
 
-1. Complete both the client and server portions of the application
-2. Implement all required API endpoints
-3. Create the necessary React components and hooks
-4. Document your API and setup process in the README.md
-5. Include screenshots of your working application
+### Frontend Setup
+1. Navigate to the client directory:
+   ```bash
+   cd client/client
+   ```
 
-## Resources
+2. Install dependencies:
+   ```bash
+   npm install
+   ```
 
-- [MongoDB Documentation](https://docs.mongodb.com/)
-- [Express.js Documentation](https://expressjs.com/)
-- [React Documentation](https://react.dev/)
-- [Node.js Documentation](https://nodejs.org/en/docs/)
-- [Mongoose Documentation](https://mongoosejs.com/docs/) 
+3. Start the development server:
+   ```bash
+   npm run dev
+   ```
+
+The application will be available at `http://localhost:5173` (frontend) and `http://localhost:5000` (backend).
+
+## 📱 Application Routes
+
+### Public Routes
+- `/` - Home page
+- `/signin` - User registration page - **Create a new user account here**
+- `/login` - User login page - **Login with existing credentials here**
+
+### Protected Routes (Require Authentication)
+- `/posts` - **Create and manage blog posts** - Main blogging interface
+- `/admin` - Admin dashboard (requires authentication)
+
+## 🔐 Authentication Flow
+
+1. **Registration**: Users can create accounts on `/signin`
+2. **Login**: Users authenticate on `/login`
+3. **Protected Access**: Redux manages authentication state for secure routes
+4. **JWT Tokens**: Stored in localStorage for session persistence
+5. **Route Protection**: Higher-order components protect sensitive routes
+
+## 🎨 UI/UX Features
+
+- **Responsive Design**: Works seamlessly on desktop and mobile devices
+- **Dark Mode Toggle**: Switch between light and dark themes
+- **Modern Interface**: Clean, intuitive user experience built with TailwindCSS
+- **Loading States**: Visual feedback during API requests
+- **Error Handling**: User-friendly error messages
+
+## 🔧 Development Scripts
+
+### Frontend (client/client)
+```bash
+npm run dev      # Start development server
+npm run build    # Build for production
+npm run preview  # Preview production build
+npm run lint     # Run ESLint
+```
+
+### Backend (server)
+```bash
+npm run dev      # Start with nodemon (auto-restart)
+npm start        # Start production server
+```
+
+## 🌟 Key Implementation Details
+
+- **State Management**: Redux Toolkit for centralized authentication state
+- **API Integration**: Axios for HTTP requests with proper error handling
+- **Protected Routes**: Higher-order component pattern for route protection
+- **Authentication**: JWT-based authentication with localStorage persistence
+- **Styling**: TailwindCSS for responsive and modern UI design
+- **Database**: MongoDB with Mongoose for data modeling
+- **Fully Integrated**: Frontend and backend work together seamlessly
+
+## 🔗 Backend Integration
+
+The project is **fully integrated** with the backend located in the `server/` folder. The frontend uses Axios to:
+- Authenticate users via API endpoints
+- Fetch and create blog posts
+- Handle user sessions and protected routes
+- Communicate with MongoDB through the Express.js API
+
+## 🤝 Contributing
+
+1. Fork the repository
+2. Create a feature branch (`git checkout -b feature/amazing-feature`)
+3. Commit your changes (`git commit -m 'Add some amazing feature'`)
+4. Push to the branch (`git push origin feature/amazing-feature`)
+5. Open a Pull Request
+
+## 📄 License
+
+This project is licensed under the ISC License.
+
+## 📞 Support
+
+For support and questions, please open an issue in the repository.
+
+---
+
+Built with ❤️ using the MERN stack, Vite, React, TailwindCSS, and Redux 
