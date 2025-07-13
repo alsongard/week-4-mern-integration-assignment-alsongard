@@ -8,6 +8,9 @@ import {configureStore} from "@reduxjs/toolkit";
 import reducerer from './store/reducer'
 import {Provider} from "react-redux";
 import requireAuth from './requireAuth.jsx';
+import { useState } from 'react'
+import HomePage from './components/homePage.jsx'
+
 
 const ProtectedPostPage = requireAuth(PostPage);
 const store = configureStore({reducer:reducerer});
@@ -18,20 +21,25 @@ if (token)
   store.dispatch({type: 'ON_LOGGED_IN'})
 }
 function App() {
+
+  const [darkMode, setDarkMode] = useState(false);
+  const bg = darkMode ? 'dark' : '';
+  console.log(`bg: ${bg}`)
   return (
-    <>
+    <div className={`${bg} h-full`}>
       <Provider store={store}>
         <BrowserRouter>
             <Routes>
-              <Route path="/" element={<div><Header/> <Outlet/></div>}>
-                <Route index element={<SignIn/>}/>
+              <Route path="/" element={<div><Header darkMode={darkMode} setDarkMode={setDarkMode}/> <Outlet/></div>}>
+                <Route index element={<HomePage/>}/>
+                <Route path="signin" element={<SignIn/>}/>
                 <Route path="login" element={<Login/> }/>
                 <Route path="posts" element={<ProtectedPostPage/> }/>
               </Route>
             </Routes>
         </BrowserRouter>
       </Provider>
-    </>
+    </div>
   )
 }
 
