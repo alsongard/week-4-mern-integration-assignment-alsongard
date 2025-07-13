@@ -110,7 +110,7 @@ app.post("/login", async (req,res)=>{
 
 // working===successfully
 app.post("/createpost", async (req,res)=>{
-    console.log(req.body);
+    // console.log(req.body);
     const {title, content, excerpt, category, slug, tags, author, published} = req.body;
     try
     {
